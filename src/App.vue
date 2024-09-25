@@ -10,7 +10,8 @@ const items = ref([
  {id:'4', label:'1 cajeta'},
   {id:'5', label:'5 bolillos'}
 ]);
-const newItem = ref();
+const newItem = ref('');
+const newItemPriority = ref('low');
 </script>
 
 <template>
@@ -21,7 +22,16 @@ const newItem = ref();
 
 <input v-model="newItem" type="text" 
 placeholder="Agregar articulos">{{ newItem }}
-
+<!-- radio buttons -->
+<label>
+  <input type="radio" value="low" v-model="newItemPriority">
+  Bajo
+</label>
+<label>
+  <input type="radio" value="hight" v-model="newItemPriority">
+  Alto
+</label>
+{{ newItemPriority == 'low' ?'🧊' : '🔥' }}
   <ul>
     
 
