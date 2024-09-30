@@ -19,19 +19,29 @@ const newItemPriority = ref('low');
     <i class="material-icons shopping-cart-icon">local_mall</i>
     {{ header }}
   </h1>
+<!-- Un botón de tipo submit que permite al usuario enviar el formulario para agregar el nuevo ítem a la lista.-->
+ <form v-on:submit.prevent="items.push({ id: items.length + 1, label: newItem })" class="add-item fomr">
+    <!-- entrada de texto -->
+    <input
+      v-model.trim="newItem"
+      type="text"
+      placeholder="Add Item"
+    />
+    <!-- Caja de seleccion de prioridad -->
+    <label>
+      <input type="checkbox" v-model="newItemHighPriority" />
+      High Priority
+    </label>
+    <!-- Boton -->
+    <button
+      class="btn btn-primary"
+    >
+      Save Item
+    </button>
+  </form>
 
-<input v-model="newItem" type="text" 
-placeholder="Agregar articulos">{{ newItem }}
-<!-- radio buttons -->
-<label>
-  <input type="radio" value="low" v-model="newItemPriority">
-  Bajo
-</label>
-<label>
-  <input type="radio" value="hight" v-model="newItemPriority">
-  Alto
-</label>
-{{ newItemPriority == 'low' ?'🧊' : '🔥' }}
+
+
   <ul>
     
 
