@@ -2,6 +2,7 @@
 import { ref } from "vue";
 //modelo 
 const header = ref('App lista de Compras');
+//items
 const items = ref([
   {id:'0', label:'10 manzanas'}, 
   {id:'1', label:'1 leche'}, 
@@ -10,6 +11,14 @@ const items = ref([
  {id:'4', label:'1 cajeta'},
   {id:'5', label:'5 bolillos'}
 ]);
+//item-Method
+
+const saveItem = () => {
+   items.value.push({id: items.value.length + 1, label: newItem.value});
+   //limpia la entrada de la caja de texto o input
+   newItem.value = '';
+};
+
 const newItem = ref('');
 const newItemPriority = ref('low');
 </script>
@@ -20,7 +29,9 @@ const newItemPriority = ref('low');
     {{ header }}
   </h1>
 <!-- Un botón de tipo submit que permite al usuario enviar el formulario para agregar el nuevo ítem a la lista.-->
- <form v-on:submit.prevent="items.push({ id: items.length + 1, label: newItem })" class="add-item fomr">
+ <form 
+    v-on:submit.prevent="saveItem()" 
+    class="add-item fomr">
     <!-- entrada de texto -->
     <input
       v-model.trim="newItem"
