@@ -18,19 +18,28 @@ const saveItem = () => {
    //limpia la entrada de la caja de texto o input
    newItem.value = '';
 };
-
+//formulario
 const newItem = ref('');
 const newItemPriority = ref('low');
+const editing = ref(true);
+const activateEdition = (activate) =>{ 
+    editing.value = activate;
+};
 </script>
 
 <template>
+  <div class="header">
 <h1>
     <i class="material-icons shopping-cart-icon">local_mall</i>
     {{ header }}
   </h1>
+  <button v-if="editing" class="btn" @click="activateEdition(false)">CANCELAR</button>
+  <button v-else class="btn btn-primary" @click="activateEdition(true)">AGREGAR ARTICULO</button>
+</div>
 <!-- Un botón de tipo submit que permite al usuario enviar el formulario para agregar el nuevo ítem a la lista.-->
  <form 
     v-on:submit.prevent="saveItem()" 
+    v-if="editing"
     class="add-item fomr">
     <!-- entrada de texto -->
     <input
@@ -54,11 +63,10 @@ const newItemPriority = ref('low');
 
 
   <ul>
-    
-
     <li
          v-for="(item, i) in items" :key="item.id"> {{i+1}} {{ i%2==0?'🔥':'✨'}} {{item.label}} </li>
   </ul>
+  <p v-if="items.length === 0"> 🥀NO HAY ELEMENTOS EN TU LISTA 🥀</p>
 </template>
 
 <style scoped>
