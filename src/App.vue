@@ -18,6 +18,13 @@ const saveItem = () => {
    //limpia la entrada de la caja de texto o input
    newItem.value = '';
 };
+
+//metodo del hipervinculo
+const hipervinculo = () => {
+    return newItem.value === '' ? 'https://www.google.com' :
+    'https://' + newItem.value;
+}
+
 //formulario
 const newItem = ref('');
 const newItemPriority = ref('low');
@@ -60,7 +67,9 @@ const activateEdition = (activate) =>{
     </button>
   </form>
 
-
+  <a v-bind:href="hipervinculo()" target="_blank">
+  {{ newItem == '' ? 'link' : newItem }}
+</a>
 
   <ul>
     <li
