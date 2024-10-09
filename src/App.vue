@@ -4,12 +4,12 @@ import { ref } from "vue";
 const header = ref('App lista de Compras');
 //items
 const items = ref([
-  {id:'0', label:'10 manzanas'}, 
-  {id:'1', label:'1 leche'}, 
-  {id:'2', label:'2 lata de atun'},
-  {id:'3', label:'1 mermelada'},
- {id:'4', label:'1 cajeta'},
-  {id:'5', label:'5 bolillos'}
+  {id:'0', label:'10 manzanas', purchased: true, priority: true}, 
+  {id:'1', label:'1 leche', purchased: false, priority: false}, 
+  {id:'2', label:'2 lata de atun', purchased: false, priority: true},
+  {id:'3', label:'1 mermelada', purchased: true, priority: false},
+ {id:'4', label:'1 cajeta', purchased: false, priority: true},
+  {id:'5', label:'5 bolillos', purchased: false, priority: true}
 ]);
 //item-Method
 
@@ -71,10 +71,14 @@ const activateEdition = (activate) =>{
   <!--<a v-bind:href="hipervinculo()" target="_blank">
   {{ newItem == '' ? 'link' : newItem }}
 </a>-->
-
+<!--lista-->
   <ul>
     <li
-         v-for="(item, i) in items" :key="item.id"> {{i+1}} {{ i%2==0?'🔥':'✨'}} {{item.label}} </li>
+         v-for="{label, id, purchased, priority} in items" 
+         :key="id" 
+         class="amazing"
+         :class="{strikeout: purchased, priority: priority}"> 
+         {{priority ? "🎈": "🌸"}} {{label}} </li>
   </ul>
   <p v-if="items.length === 0"> 🥀NO HAY ELEMENTOS EN TU LISTA 🥀</p>
 </template>
