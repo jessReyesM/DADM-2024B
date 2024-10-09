@@ -81,6 +81,18 @@ const activateEdition = (activate) =>{
          {{priority ? "🎈": "🌸"}} {{label}} </li>
   </ul>
   <p v-if="items.length === 0"> 🥀NO HAY ELEMENTOS EN TU LISTA 🥀</p>
+
+<!--lista con arreglos-->
+<ul>
+    <li
+         v-for="{label, id, purchased, priority} in items" 
+         :key="id" 
+         :class="[purchased ? 'strikeout': '', priority ? 'priority' : '']"> 
+         {{priority ? "🎈": "🌸"}} {{label}} </li>
+  </ul>
+  <p v-if="items.length === 0"> 🥀NO HAY ELEMENTOS EN TU LISTA 🥀</p>
+
+
 </template>
 
 <style scoped>
