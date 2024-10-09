@@ -61,15 +61,16 @@ const activateEdition = (activate) =>{
     </label>
     <!-- Boton -->
     <button
+    :disabled="newItem.length == 0"
       class="btn btn-primary"
     >
       Save Item
     </button>
   </form>
 
-  <a v-bind:href="hipervinculo()" target="_blank">
+  <!--<a v-bind:href="hipervinculo()" target="_blank">
   {{ newItem == '' ? 'link' : newItem }}
-</a>
+</a>-->
 
   <ul>
     <li
