@@ -1,5 +1,18 @@
 <script setup>
-import { ref } from "vue";
+//import { ref } from "vue";
+// This starter template is using Vue 3 <script setup> SFCs
+// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
+import { ref, computed } from "vue";
+
+// Creando una propiedad computada
+const characterCount = computed(()=>{
+  // Toda propiedad computada debe regresar un valor
+  return newItem.value.length;
+});
+
+// Creando propiedad computada que invierte items de la lista
+const reversedItems = computed(() => [...items.value].reverse());
+
 //modelo 
 const header = ref('App lista de Compras');
 //items
@@ -70,6 +83,10 @@ const togglePurchased = (item) => {
     >
       Save Item
     </button>
+    <!-- Contador -->
+  <p class="counter">
+    {{ characterCount }} / 200
+  </p>
   </form>
 
   <!--<a v-bind:href="hipervinculo()" target="_blank">
@@ -77,14 +94,13 @@ const togglePurchased = (item) => {
 </a>-->
 <!--lista-->
 <ul>
-  <li
-    v-for="item in items"
-    @click="togglePurchased(item)"
-    v-bind:key="item.id"
-    :class="[{ strikeout: item.purchased }, { [item.priority]: item.highPriority }]"
-  >
-    ⚜ {{ item.label }}
-  </li>
+  <li 
+	v-for="({ id, label, purchased, highPriority }, index) in reversedItems"
+  :class="{ strikeout: purchased, priority: highPriority }" 
+	@click="togglePurchased(reversedItems[index])" 
+  v-bind:key="id">
+	  🔹 {{ label }}
+</li>
 </ul>
 
   <p v-if="items.length === 0"> 🥀NO HAY ELEMENTOS EN TU LISTA 🥀</p>
