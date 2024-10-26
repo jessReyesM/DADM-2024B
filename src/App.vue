@@ -31,6 +31,10 @@ const newItemPriority = ref('low');
 const editing = ref(true);
 const activateEdition = (activate) =>{ 
     editing.value = activate;
+// Alternando estado de compra del item
+const togglePurchased = (item) => {
+  item.purchased = !item.purchased;
+}
 };
 </script>
 
@@ -72,17 +76,20 @@ const activateEdition = (activate) =>{
   {{ newItem == '' ? 'link' : newItem }}
 </a>-->
 <!--lista-->
-  <ul>
-    <li
-         v-for="{label, id, purchased, priority} in items" 
-         :key="id" 
-         class="amazing"
-         :class="{strikeout: purchased, priority: priority}"> 
-         {{priority ? "🎈": "🌸"}} {{label}} </li>
-  </ul>
+<ul>
+  <li
+    v-for="item in items"
+    @click="togglePurchased(item)"
+    v-bind:key="item.id"
+    :class="[{ strikeout: item.purchased }, { [item.priority]: item.highPriority }]"
+  >
+    ⚜ {{ item.label }}
+  </li>
+</ul>
+
   <p v-if="items.length === 0"> 🥀NO HAY ELEMENTOS EN TU LISTA 🥀</p>
 
-<!--lista con arreglos-->
+<!--lista con arreglos
 <ul>
     <li
          v-for="{label, id, purchased, priority} in items" 
@@ -90,7 +97,7 @@ const activateEdition = (activate) =>{
          :class="[purchased ? 'strikeout': '', priority ? 'priority' : '']"> 
          {{priority ? "🎈": "🌸"}} {{label}} </li>
   </ul>
-  <p v-if="items.length === 0"> 🥀NO HAY ELEMENTOS EN TU LISTA 🥀</p>
+  <p v-if="items.length === 0"> 🥀NO HAY ELEMENTOS EN TU LISTA 🥀</p>-->
 
 
 </template>
