@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+import PlanItem from './components/plant-item.vue';
+</script>
 
 <template>
   <header>
@@ -16,27 +18,9 @@
     </h2>
 
     <div class="plans">
-      <div class="plan">
-        <div class="description">
-          <span class="title">
-            El Soltero
-          </span>
-        </div>
-      </div>
-      <div class="plan">
-        <div class="description">
-          <span class="title">
-            El Curioso
-          </span>
-        </div>
-      </div>
-      <div class="plan">
-        <div class="description">
-          <span class="title">
-            El adicto
-          </span>
-        </div>
-      </div>
+      <planItem></planItem>
+      <planItem></planItem>
+      <planItem></planItem>
     </div>
   </div>
 </template>
