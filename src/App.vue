@@ -1,5 +1,7 @@
 <script setup>
+import {ref} from 'vue';
 import PlanItem from './components/plant-item.vue';
+const plans= ref(['El cafetero', 'El chelero', 'El intelectual']);
 </script>
 
 <template>
@@ -18,9 +20,10 @@ import PlanItem from './components/plant-item.vue';
     </h2>
 
     <div class="plans">
-      <planItem></planItem>
-      <planItem></planItem>
-      <planItem></planItem>
+      <plan-item 
+      v-for="plan in plans" 
+      :key="plan"
+      :name="plan" />
     </div>
   </div>
 </template>

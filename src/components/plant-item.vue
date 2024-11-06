@@ -2,16 +2,22 @@
     <div class="plan">
     <div class="description">
       <span class="title">
-        El adicto
+         {{ name }}
       </span>
     </div>
   </div>
 </template>
 
 <script setup>
-
+//usando un macro para definir las propiedades
+//defineProps(['name']);
+defineProps({
+  name: {
+    type: String,
+    required: true
+  }
+});
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
 </style>
