@@ -1,7 +1,5 @@
 <script setup>
-import {ref} from 'vue';
-import PlanItem from './components/plant-item.vue';
-const plans= ref(['El cafetero', 'El chelero', 'El intelectual']);
+import PlanPicker from './components/PlanPicker.vue'; 
 </script>
 
 <template>
@@ -19,12 +17,8 @@ const plans= ref(['El cafetero', 'El chelero', 'El intelectual']);
       Viajamos por el mundo para encontrar el mejor café de origen único para ti
     </h2>
 
-    <div class="plans">
-      <plan-item 
-      v-for="plan in plans" 
-      :key="plan"
-      :name="plan" />
-    </div>
+   <!--todo include picker-->
+    <PlanPicker />
   </div>
 </template>
 
