@@ -19,7 +19,6 @@ const selectPlan = (name) => {
       @select="selectPlan"
       :selectPlan="selectedPlan"/>
     </div>
-    <p>{{ selectedPlan }}</p>
 </template>
 
 <style scoped>
