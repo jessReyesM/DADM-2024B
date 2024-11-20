@@ -1,12 +1,9 @@
 <template>
-    <div @click="selectPlan" 
-    class="plan"
-    :class="{ selected: isSelected}">
+    <div @click="selectPlan" class="plan"
+    :class="{ selected: isSelected }"
+    >
     <div class="description">
-      <span class="title">
-         {{ name }}
-         {{ isSelected ? '😊' : '' }}
-      </span>
+      <span class="title"> {{ name }} {{ isSelected ? '😊' : '' }}</span>
     </div>
   </div>
 </template>
@@ -24,15 +21,12 @@ const props = defineProps({
   selectPlan: String
 });
 //define event
-const emit = defineEmits(['select']);
-
-
 //metodo, funcion que permite cambiar el estado de la variable
 //selected
+const emit = defineEmits(['select']);
 const selectPlan = () => {
- 
   //emitir evento que el plan a sido seleccionado
-  emit('selec', props.name);
+  emit('select', props.name);
 };
 //creando una propiedad computada
 //para saber si el plan ha sudo seleccionado
